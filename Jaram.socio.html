@@ -7,6 +7,7 @@
 </head>
 <body>
   <h1><a href="index.html">Jaram</a></h1>
+  <img id = "img" src="Jaram.png" width="250">
   <div id="grid">
   <ol>
     <li><a href="C:\Users\sec\Desktop\WEB\Jaram.socio.html">게시판</a></li>
@@ -14,11 +15,39 @@
     <li><a href="Jaram.master.html">관리자 페이지</a></li>
   </ol>
   <div id="article">
-  <h3><strong>Jaram을 소개합니다.</strong></h3>
-  <img src="Jaram.png" width="300">
-  <p style="margin-top:5px;">...</p>
-  <p>....</p>
-  <p>....</p>
+  <h3><strong>자람 메인 게시판</strong></h3>
+  <p>자람 게시판은 자람 학우들이 모여 소통하는 창구입니다.</p>
+  <p>같은 학회 학우들에게 공유하고 싶은 꿀팁이나 질문을 올리며 활동해보세요!</p>
+  <p>댓글</p>
+  <form id="commentForm" action="Jaram.socio.html" autocomplete="on">
+    <input type="text" name = "username" placeholder="username";>
+    <input type="text" name = "comment" placeholder="comment";>
+    <button>add</button>
+  </form>
+  <p>Comments</p>
+  <ul id="comments"></ul>
+
+  <script>
+  const commentForm = document.querySelector("#commentForm");
+  const comments = document.querySelector("#comments");
+  commentForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const usernameInput =commentForm.elements.username;
+    const commentInput = commentForm.elements.comment;
+    addComment(usernameInput.value,commentInput.value);
+    usernameInput.value = "";
+    commentInput.value = "";
+  });
+  const addComment = (username, comment) => {
+  const newComment = document.createElement("li");
+  const bTag = document.createElement("b");
+  bTag.append(username);
+  newComment.append(bTag);
+  newComment.append(`: ${comment}`);
+  comments.append(newComment);
+};
+  </script>
+
 </div>
 </div>
 </body>
